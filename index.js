@@ -2,20 +2,29 @@
 console.log("Rock, paper, scissors ?"); // Game call
 
 // Randomize the computer's choice between the three choices
+let humanChoice = prompt("Your choice => ");
 let compChoice = 0; //Computer's choice variable
-let chooser = (Math.random() * 10) % 3; // Random number between 0 and 2
+let chooser = (Math.trunc(Math.random() * 10)) % 3; // Random number between 0 and 2
 
-// Choices
-switch(chooser) {
-    case 0:
-        compChoice = "rock";
-        break;
-    case 1:
-        compChoice = "paper";
-        break;
-    case 2:
-        compChoice = "scissors";
-        break;
+// Get the computer's random choice
+function getComputerChoice(choice) {
+
+    // Choices
+    switch(choice) {
+        case 0:
+            return "rock";
+        case 1:
+            return "paper";
+        case 2:
+            return "scissors";
+    }
 }
 
-console.log(compChoice); // Computer's choice
+// Get the user's choice
+function getUserChoice() {
+    userChoice = prompt("Your choice => ");
+    return userChoice;
+}
+
+console.log(getComputerChoice(chooser)); // Computer's choice
+console.log(getUserChoice()); // User's choice
