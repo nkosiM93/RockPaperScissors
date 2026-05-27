@@ -82,7 +82,8 @@ function gamePlay() {
     console.log("\n-----------------------------\n");
 }
 
-gamePlay(); // Call the game-play function
+// Call the game-play function
+gamePlay(); 
 gamePlay();
 gamePlay();
 gamePlay();
