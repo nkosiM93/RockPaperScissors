@@ -2,17 +2,18 @@
 console.log("Rock, paper, scissors ?"); // Game call
 
 // Randomize the computer's choice between the three choices
-let chooser = (Math.trunc(Math.random() * 10)) % 3; // Random number between 0 and 2
-let compChoice = getComputerChoice(chooser); // computer choice
+let compChoice = getComputerChoice(); // computer choice
 let userChoice = getUserChoice(); //User choice variable
 let userScore = 0;
 let compScore = 0;
 
 // Get the computer's random choice
-function getComputerChoice(choice) {
+function getComputerChoice() {
 
     // Choices
-    switch(choice) {
+    switch(Math.trunc(Math.random() * 10) % 3){ 
+        /*Randomize the computer's choice each time this function 
+        is called */
         case 0:
             return "rock";
         case 1:
@@ -29,6 +30,9 @@ function getUserChoice() {
 
 //Game play
 function playRound(userChoice, compCh) {
+
+
+
     // handle ties immediately
     if (userChoice === compCh) {
         return "It's a tie!";
@@ -67,6 +71,9 @@ function playRound(userChoice, compCh) {
     return "Invalid choice, refresh the browser";
 }
 
-console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
+/*console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
 console.log(`Your choice: ${userChoice}`); // User's choice
 console.log(playRound(userChoice, getComputerChoice(chooser))); // Play the game
+console.log(`Your score: ${userScore}`);
+console.log(`Computer score: ${compScore}`);*/
+
