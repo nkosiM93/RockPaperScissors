@@ -2,9 +2,11 @@
 console.log("Rock, paper, scissors ?"); // Game call
 
 // Randomize the computer's choice between the three choices
-let humanChoice = prompt("Your choice => ");
-let compChoice = 0; //Computer's choice variable
 let chooser = (Math.trunc(Math.random() * 10)) % 3; // Random number between 0 and 2
+let compChoice = getComputerChoice(chooser); // computer choice
+let userChoice = getUserChoice(); //User choice variable
+let userScore = 0;
+let compScore = 0;
 
 // Get the computer's random choice
 function getComputerChoice(choice) {
@@ -22,9 +24,49 @@ function getComputerChoice(choice) {
 
 // Get the user's choice
 function getUserChoice() {
-    userChoice = prompt("Your choice => ");
-    return userChoice;
+    return prompt("Your choice => ").toLowerCase();
 }
 
-console.log(getComputerChoice(chooser)); // Computer's choice
-console.log(getUserChoice()); // User's choice
+//Game play
+function playRound(userChoice, compCh) {
+    // handle ties immediately
+    if (userChoice === compCh) {
+        return "It's a tie!";
+    }
+
+    // Game Scenario 1
+    if (userChoice === 'rock') {
+        if (compCh === 'paper') {
+            compScore++;
+            return `You lose, ${compCh} beats ${userChoice}`;
+        }
+        userScore++;
+        return `You win, ${userChoice} beats ${compCh}`;
+    }
+
+     // Game Scenario 2
+    if (userChoice === 'paper') {
+        if (compCh === 'scissors') {
+            compScore++;
+            return `You lose, ${compCh} beats ${userChoice}`;
+        }
+        userScore++;
+        return `You win, ${userChoice} beats ${compCh}`;
+    }
+
+     // Game Scenario 3
+    if (userChoice === 'scissors') {
+        if (compCh === 'rock') {
+            compScore++;
+            return `You lose, ${compCh} beats ${userChoice}`;
+        }
+        userScore++;
+        return `You win, ${userChoice} beats ${compCh}`;
+    }
+
+    return "Invalid choice, refresh the browser";
+}
+
+console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
+console.log(`Your choice: ${userChoice}`); // User's choice
+console.log(playRound(userChoice, getComputerChoice(chooser))); // Play the game
