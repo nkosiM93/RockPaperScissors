@@ -9,7 +9,7 @@ let round = 1;
 function getComputerChoice() {
 
     // Choices
-    switch(Math.trunc(Math.random() * 10) % 3){ 
+    switch(Math.floor(Math.random() * 3)){ 
         /* 
         Randomize the computer's choice each time this function 
         is called 
