@@ -25,7 +25,7 @@ function getComputerChoice() {
 
 // Get the user's choice
 function getUserChoice() {
-    return prompt("Your choice => ").toLowerCase();
+    return prompt("Rock, paper, scissors, GO!!! \nEnter choice: ").toLowerCase();
 }
 
 //Game play
