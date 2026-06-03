@@ -23,9 +23,18 @@ function getComputerChoice() {
     }
 }
 
+
+
 // Get the user's choice
 function getUserChoice() {
-    return prompt("Rock, paper, scissors, GO!!!. \nEnter choice: ").toLowerCase();
+    const gamePlayParent = document.querySelector("#gamePlay");
+
+    gamePlayParent.addEventListener('click', (e) => {
+        const clickedBtn = e.target;
+        if (clickedBtn.tagName === "BUTTON") {
+            return clickedBtn.textContent.toLowerCase();
+        }
+    } );
 }
 
 //Game play
@@ -72,26 +81,23 @@ function playRound(userChoice, compCh) {
 function gamePlay() {
     console.log(`Round ${round++}!`); // Round number
     console.log("Rock, paper, scissors, GO!!!\n"); // Game call
-    compChoice = getComputerChoice(); // computer choice
-    userChoice = getUserChoice(); //User choice
-    console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
-    console.log(`Your choice: ${userChoice}`); // User's choice
-    console.log(playRound(userChoice, compChoice)); // Play the game
-    console.log(`Your score: ${userScore}`);
-    console.log(`Computer score: ${compScore}`);
-    console.log("\n-----------------------------\n");
+
+    const gamePlayParent = document.querySelector("#gamePlay");
+
+    gamePlayParent.addEventListener('click', (e) => {
+        const clickedBtn = e.target;
+        if (clickedBtn.tagName === "BUTTON") {
+            compChoice = getComputerChoice();
+            userChoice = clickedBtn.textContent.toLowerCase();
+            console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
+            console.log(`Your choice: ${userChoice}`); // User's choice
+            console.log(playRound(userChoice, compChoice)); // Play the game
+            console.log(`Your score: ${userScore}`);
+            console.log(`Computer score: ${compScore}`);
+            console.log("\n-----------------------------\n");
+        }
+    } );
 }
 
-// Call the game-play function
-gamePlay(); 
 gamePlay();
-gamePlay();
-gamePlay();
-gamePlay();
-
-/*console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
-console.log(`Your choice: ${userChoice}`); // User's choice
-console.log(playRound(userChoice, getComputerChoice(chooser))); // Play the game
-console.log(`Your score: ${userScore}`);
-console.log(`Computer score: ${compScore}`);*/
 
