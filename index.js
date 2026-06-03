@@ -83,6 +83,15 @@ function gamePlay() {
     console.log("Rock, paper, scissors, GO!!!\n"); // Game call
 
     const gamePlayParent = document.querySelector("#gamePlay");
+    const compChoiceParent = document.querySelector(".compChoice");
+    const userChoiceParent = document.querySelector(".userChoice");
+    const scoreParent = document.querySelector(".compScore");
+    const compScoreTag = document.createElement("h3");
+    const compChoiceTag = document.createElement("h3");
+    const UserChoiceTag = document.createElement("h3");
+    const UserScoreTag = document.createElement("h3");
+    compChoiceParent.appendChild(compChoiceTag);
+
 
     gamePlayParent.addEventListener('click', (e) => {
         const clickedBtn = e.target;
@@ -90,6 +99,7 @@ function gamePlay() {
             compChoice = getComputerChoice();
             userChoice = clickedBtn.textContent.toLowerCase();
             console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
+            compChoiceTag.textContent = compChoice;
             console.log(`Your choice: ${userChoice}`); // User's choice
             console.log(playRound(userChoice, compChoice)); // Play the game
             console.log(`Your score: ${userScore}`);
