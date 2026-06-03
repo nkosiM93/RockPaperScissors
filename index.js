@@ -85,26 +85,27 @@ function gamePlay() {
     const gamePlayParent = document.querySelector("#gamePlay");
     const compChoiceParent = document.querySelector(".compChoice");
     const userChoiceParent = document.querySelector(".userChoice");
-    const scoreParent = document.querySelector(".compScore");
+    const compScoreParent = document.querySelector(".compScore");
+    const userScoreParent = document.querySelector(".userScore");
     const compScoreTag = document.createElement("h3");
     const compChoiceTag = document.createElement("h3");
     const UserChoiceTag = document.createElement("h3");
     const UserScoreTag = document.createElement("h3");
     compChoiceParent.appendChild(compChoiceTag);
-
+    userChoiceParent.appendChild(UserChoiceTag);
+    compScoreParent.appendChild(compScoreTag);
+    userScoreParent.appendChild(UserScoreTag);
 
     gamePlayParent.addEventListener('click', (e) => {
         const clickedBtn = e.target;
         if (clickedBtn.tagName === "BUTTON") {
             compChoice = getComputerChoice();
             userChoice = clickedBtn.textContent.toLowerCase();
-            console.log(`Player 1 choice: ${compChoice}`); // Computer's choice
             compChoiceTag.textContent = compChoice;
-            console.log(`Your choice: ${userChoice}`); // User's choice
-            console.log(playRound(userChoice, compChoice)); // Play the game
-            console.log(`Your score: ${userScore}`);
-            console.log(`Computer score: ${compScore}`);
-            console.log("\n-----------------------------\n");
+            UserChoiceTag.textContent = userChoice;
+            playRound(userChoice, compChoice);
+            UserScoreTag.textContent = userScore;
+            compScoreTag.textContent = compScore;
         }
     } );
 }
