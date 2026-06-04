@@ -4,7 +4,8 @@ let userChoice;
 let userScore = 0;
 let compScore = 0;
 let round = 1;
-
+const gamePlayParent = document.querySelector("body");
+const winnerTag = document.createElement("h1");
 // Get the computer's random choice
 function getComputerChoice() {
 
@@ -22,8 +23,6 @@ function getComputerChoice() {
             return "scissors";
     }
 }
-
-
 
 // Get the user's choice
 function getUserChoice() {
@@ -43,6 +42,8 @@ function playRound(userChoice, compCh) {
     if (userChoice === compCh) {
         return "It's a tie!";
     }
+
+    winnerTag.textContent = ""; // No winner yet
 
     // Game Scenario 1
     if (userChoice === 'rock') {
@@ -80,9 +81,8 @@ function playRound(userChoice, compCh) {
 // Game-play function (main funtion)
 function gamePlay() {
     console.log(`Round ${round++}!`); // Round number
-    console.log("Rock, paper, scissors, GO!!!\n"); // Game call
 
-    const gamePlayParent = document.querySelector("#gamePlay");
+    const gamePlay = document.querySelector("#gamePlay");
     const compChoiceParent = document.querySelector(".compChoice");
     const userChoiceParent = document.querySelector(".userChoice");
     const compScoreParent = document.querySelector(".compScore");
@@ -96,19 +96,28 @@ function gamePlay() {
     compScoreParent.appendChild(compScoreTag);
     userScoreParent.appendChild(UserScoreTag);
 
-    gamePlayParent.addEventListener('click', (e) => {
+    gamePlay.addEventListener('click', (e) => {
         const clickedBtn = e.target;
         if (clickedBtn.tagName === "BUTTON") {
-            compChoice = getComputerChoice();
-            userChoice = clickedBtn.textContent.toLowerCase();
-            compChoiceTag.textContent = compChoice;
-            UserChoiceTag.textContent = userChoice;
-            playRound(userChoice, compChoice);
-            UserScoreTag.textContent = userScore;
-            compScoreTag.textContent = compScore;
+            if (userScore === 5 || compScore === 5) {
+                if (userScore === 5) {
+                    winnerTag.textContent = "Congratulations! You win the game!";
+                } else {
+                    winnerTag.textContent = "Sorry! You lose the game!";
+                }
+                gamePlayParent.append(winnerTag);
+                userScore = 0;
+                compScore = 0;
+            }else{
+                compChoice = getComputerChoice();
+                userChoice = clickedBtn.textContent.toLowerCase();
+                compChoiceTag.textContent = compChoice;
+                UserChoiceTag.textContent = userChoice;
+                playRound(userChoice, compChoice);
+                UserScoreTag.textContent = userScore;
+                compScoreTag.textContent = compScore;
+            }
         }
     } );
 }
-
 gamePlay();
-
